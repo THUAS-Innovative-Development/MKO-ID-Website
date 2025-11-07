@@ -1,0 +1,8 @@
+{
+    "project_name": "Solar Energy Dashboard",
+    "members": ["Alice Lee", "Bob Singh"],
+    "coach": "Dr. Nguyen",
+    "organiser": "GreenTech Initiative",
+    "image": "/images/solar-dashboard.jpg",
+    "description_markdown": "## Project Overview\n\nThis project visualises solar panel performance data in real time using **React** and **D3.js**."
+}
