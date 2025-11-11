@@ -28,18 +28,10 @@ function PostComponent() {
         })()
     }, [name])
 
-    if (loading) return <div>Loading…</div>
-    if (!project) return <div>Project "{name}" not found. Check /project for available pages.</div>
+    if (loading) return <div>Laden…</div>
+    if (!project) return <div>Project "{name}" is niet gevonden.</div>
 
     return (
-        <div>
-            <h1>Post {name}</h1>
-            <h2>{project.project_name}</h2>
-            <p><strong>Coach:</strong> {project.coach}</p>
-            <p><strong>Organiser:</strong> {project.organiser}</p>
-            <p><strong>Members:</strong> {project.members?.join(', ')}</p>
-            <img src={project.image} alt={project.project_name} style={{ maxWidth: 300 }} />
-            <pre>{project.description_markdown}</pre>
-        </div>
+        <></>
     )
 }
