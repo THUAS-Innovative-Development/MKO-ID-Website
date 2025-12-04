@@ -1,11 +1,17 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { Header } from "../components/layout/header";
+import { Footer } from "../components/layout/footer";
 
 const RootLayout = () => (
   <>
-    <div className="flex flex-col w-full items-center py-6">
-      <Outlet />
+    <div className="min-h-screen flex flex-col w-full">
+      <Header />
+      <main className="flex-1 w-full flex justify-center">
+        <Outlet />
+      </main>
       <TanStackRouterDevtools />
+      <Footer />
     </div>
   </>
 );
