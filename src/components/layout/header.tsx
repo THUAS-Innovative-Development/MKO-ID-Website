@@ -1,25 +1,14 @@
 import type { ReactNode } from "react";
-
-type NavigationItem = {
-    label: string;
-    href: string;
-}
-
-const navigationItems: NavigationItem[] = [
-    { label: "Home", href: "/" },
-    { label: "Wat is ID?", href: "#" },
-    { label: "Contact", href: "#" },
-    { label: "Artikelen", href: "/articles" },
-];
+import { Hamburger } from "./hamburger";
+import { navigationItems } from "../../config/navigation";
 
 export function Header(): ReactNode {
   return (
-    <header className="w-full h-20 bg-red flex items-center px-12 gap-12 border-b-[1px] border-[#2E2E32]">
+    <header className="w-full h-20 bg-red flex items-center lg:px-12 px-6 gap-12 border-b-[1px] border-[#2E2E32] lg:justify-normal justify-between">
       <a href="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="170"
-          height="40"
+          className="lg:w-[170px] lg:h-10 w-[120px] h-7"
           viewBox="0 0 170 40"
         >
           <path
@@ -28,7 +17,7 @@ export function Header(): ReactNode {
           ></path>
         </svg>
       </a>
-      <div className="flex gap-12">
+      <div className="lg:flex gap-12 hidden">
         {navigationItems.map((item) => (
             <a
                 key={item.href}
@@ -41,6 +30,7 @@ export function Header(): ReactNode {
             </a>
         ))}
       </div>
+      <Hamburger />
     </header>
   );
 }
