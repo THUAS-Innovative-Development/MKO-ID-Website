@@ -59,7 +59,7 @@ const testArticles = [
 function RouteComponent() {
   return (
     <>
-      <section className="grid grid-cols-3 w-fit gap-6">
+      <section className="grid lg:grid-cols-3 grid-cols-1 w-fit gap-6 py-12">
       {testArticles.map((a, i) => (
         <Article key={i} {...a} />
       ))}

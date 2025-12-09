@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WatIsIDRouteImport } from './routes/watIsID'
 import { Route as MainRouteImport } from './routes/main'
 import { Route as ArticlesRouteImport } from './routes/articles'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectNameRouteImport } from './routes/project.$name'
 
+const WatIsIDRoute = WatIsIDRouteImport.update({
+  id: '/watIsID',
+  path: '/watIsID',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MainRoute = MainRouteImport.update({
   id: '/main',
   path: '/main',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
   '/main': typeof MainRoute
+  '/watIsID': typeof WatIsIDRoute
   '/project/$name': typeof ProjectNameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
   '/main': typeof MainRoute
+  '/watIsID': typeof WatIsIDRoute
   '/project/$name': typeof ProjectNameRoute
 }
 export interface FileRoutesById {
@@ -52,25 +60,34 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
   '/main': typeof MainRoute
+  '/watIsID': typeof WatIsIDRoute
   '/project/$name': typeof ProjectNameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/articles' | '/main' | '/project/$name'
+  fullPaths: '/' | '/articles' | '/main' | '/watIsID' | '/project/$name'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/articles' | '/main' | '/project/$name'
-  id: '__root__' | '/' | '/articles' | '/main' | '/project/$name'
+  to: '/' | '/articles' | '/main' | '/watIsID' | '/project/$name'
+  id: '__root__' | '/' | '/articles' | '/main' | '/watIsID' | '/project/$name'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticlesRoute: typeof ArticlesRoute
   MainRoute: typeof MainRoute
+  WatIsIDRoute: typeof WatIsIDRoute
   ProjectNameRoute: typeof ProjectNameRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/watIsID': {
+      id: '/watIsID'
+      path: '/watIsID'
+      fullPath: '/watIsID'
+      preLoaderRoute: typeof WatIsIDRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/main': {
       id: '/main'
       path: '/main'
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticlesRoute: ArticlesRoute,
   MainRoute: MainRoute,
+  WatIsIDRoute: WatIsIDRoute,
   ProjectNameRoute: ProjectNameRoute,
 }
 export const routeTree = rootRouteImport
