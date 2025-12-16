@@ -8,7 +8,7 @@ import { navigationItems } from "@/src/config/navigation";
 import { Footer } from "./footer";
 
 function AppShellInner({ children }: { children: React.ReactNode }) {
-  const { isOpen } = useHamburgerMenu();
+  const { isOpen, toggle } = useHamburgerMenu();
 
   return (
     <div className="min-h-screen flex flex-col w-full">
@@ -22,6 +22,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
                 <React.Fragment key={item.href}>
                   <Link
                     href={item.href}
+                    onClick={toggle}
                     className="text-[#223343] hover:text-gray-400 transition-colors duration-200 font-arial-black text-lg w-full py-4 px-24"
                   >
                     {item.label}
