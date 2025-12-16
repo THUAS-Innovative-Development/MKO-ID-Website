@@ -1,65 +1,69 @@
-import Image from "next/image";
+import "./index.css";
+
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    // dummy project data
+    const projects = [
+        {
+            title: "Paardenstal",
+            image: "/assets/img/ps.png",
+            link: "/project/paardenstal",
+        },
+        {
+            title: "Smart Kitchen",
+            image: "/assets/img/sk.png",
+            link: "/project/smart-kitchen",
+        },
+        {
+            title: "Green Innovation",
+            image: "/assets/img/gi.png",
+            link: "/project/green-innovation",
+        },
+    ];
+
+    return (
+        <div className="home-page">
+            <section className="hero full-width-hero">
+                <div className="hero-content">
+                    <div className="hero-block">
+                        <h1>Dit is Innovative Development</h1>
+                    </div>
+                </div>
+            </section>
+
+            <div className="container">
+                <section className="color-blocks">
+                    <div className="block" style={{ backgroundColor: "#00B1D2" }}></div>
+                    <div className="block" style={{ backgroundColor: "#D24E4B" }}></div>
+                    <div className="block" style={{ backgroundColor: "#2D3A4B" }}></div>
+                    <div className="block" style={{ backgroundColor: "#A4A900" }}></div>
+                    <div className="block" style={{ backgroundColor: "#FFC500" }}></div>
+                    <div className="block" style={{ backgroundColor: "#666C84" }}></div>
+                </section>
+
+                <section className="projects">
+                    <div className='flex'>
+                        <h2 className="section-title">De leukste projecten bij ID</h2>
+                        <a>Bekijk alle →</a>
+                    </div>
+                    <div className="projects-grid">
+                        {projects.map((p) => (
+                            <div className="project-card" key={p.title}>
+                                <div
+                                    className="project-image"
+                                    style={{ backgroundImage: `url(${p.image})` }}
+                                >
+                                    <div className="overlay"></div>
+                                    <div className="project-text">
+                                        <h3>{p.title}</h3>
+                                        Lees meer →
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
 }
