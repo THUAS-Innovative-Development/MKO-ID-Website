@@ -1,11 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Article } from "@/src/components/Article";
 import { ArrowRight, Check, Rocket, MapPin, Brain, Search, PenTool, Terminal } from "lucide-react";
-// 1. Importeer Article
-import { Article } from "../components/article";
-
-export const Route = createFileRoute('/watIsID')({
-  component: Index,
-})
 
 const idProjects = [
   {
@@ -31,7 +25,7 @@ const idProjects = [
   },
 ]
 
-function Index() {
+export default function WatIsID() {
   return (
     <div className="w-full font-sans text-[#223343] bg-white">
 

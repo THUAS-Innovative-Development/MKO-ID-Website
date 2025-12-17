@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import { Hamburger } from "./hamburger";
-import { navigationItems } from "../../config/navigation";
+import { navigationItems } from "@/src/config/navigation";
 
 export function Header(): ReactNode {
   return (
-    <header className="w-full h-20 bg-red flex items-center lg:px-12 px-6 gap-12 border-b-[1px] border-[#2E2E32] lg:justify-normal justify-between">
+    <header className="w-full h-20 bg-red flex items-center lg:px-12 px-6 gap-12 border-b border-[#2E2E32] lg:justify-normal justify-between">
       <a href="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"

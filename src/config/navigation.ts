@@ -1,4 +1,3 @@
-// src/config/navigation.ts
 export type NavigationItem = {
   label: string;
   href: string;
@@ -6,7 +5,7 @@ export type NavigationItem = {
 
 export const navigationItems: NavigationItem[] = [
   { label: "Home", href: "/" },
-  { label: "Wat is ID?", href: "/watIsID" },
-  { label: "Contact", href: "#" },
+  { label: "Wat is ID?", href: "/wat-is-id" },
+  { label: "Contact", href: "/contact" },
   { label: "Artikelen", href: "/articles" },
 ];

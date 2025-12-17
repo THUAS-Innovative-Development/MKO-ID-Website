@@ -1,29 +1,22 @@
-import { createFileRoute } from '@tanstack/react-router';
-import "../index.css";
-import ps from "../assets/img/ps.png";
-import sk from "../assets/img/sk.png";
-import gi from "../assets/img/gi.png";
+import "./index.css";
 
-export const Route = createFileRoute('/')({
-    component: Index,
-})
 
-export default function Index() {
+export default function Home() {
     // dummy project data
     const projects = [
         {
             title: "Paardenstal",
-            image: ps,
+            image: "/assets/img/ps.png",
             link: "/project/paardenstal",
         },
         {
             title: "Smart Kitchen",
-            image: sk,
+            image: "/assets/img/sk.png",
             link: "/project/smart-kitchen",
         },
         {
             title: "Green Innovation",
-            image: gi,
+            image: "/assets/img/gi.png",
             link: "/project/green-innovation",
         },
     ];

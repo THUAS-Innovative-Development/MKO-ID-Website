@@ -2,9 +2,10 @@
 
 @font-face {
   font-family: 'Arial Black';
-  src: url('/src/assets/fonts/arial-black.woff') format('woff');
+  src: url('/assets/fonts/arial_black.woff') format('woff');
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @theme {

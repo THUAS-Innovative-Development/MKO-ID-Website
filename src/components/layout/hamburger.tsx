@@ -1,5 +1,5 @@
+import { useHamburgerMenu } from "@/src/context/HamburgerMenuContext";
 import type { ReactNode } from "react";
-import { useHamburgerMenu } from "../../context/HamburgerMenuContext";
 
 export function Hamburger(): ReactNode {
   const { isOpen, toggle } = useHamburgerMenu();
