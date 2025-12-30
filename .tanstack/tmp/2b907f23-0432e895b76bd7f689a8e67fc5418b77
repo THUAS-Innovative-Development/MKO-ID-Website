@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MainRouteImport } from './routes/main'
-import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ArticlesRouteImport } from './routes/articles'
 import { Route as ProjectNameRouteImport } from './routes/project.$name'
 
@@ -19,9 +19,9 @@ const MainRoute = MainRouteImport.update({
   path: '/main',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactsRoute = ContactsRouteImport.update({
-  id: '/contacts',
-  path: '/contacts',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArticlesRoute = ArticlesRouteImport.update({
@@ -37,34 +37,34 @@ const ProjectNameRoute = ProjectNameRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/articles': typeof ArticlesRoute
-  '/contacts': typeof ContactsRoute
+  '/contact': typeof ContactRoute
   '/main': typeof MainRoute
   '/project/$name': typeof ProjectNameRoute
 }
 export interface FileRoutesByTo {
   '/articles': typeof ArticlesRoute
-  '/contacts': typeof ContactsRoute
+  '/contact': typeof ContactRoute
   '/main': typeof MainRoute
   '/project/$name': typeof ProjectNameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/articles': typeof ArticlesRoute
-  '/contacts': typeof ContactsRoute
+  '/contact': typeof ContactRoute
   '/main': typeof MainRoute
   '/project/$name': typeof ProjectNameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/articles' | '/contacts' | '/main' | '/project/$name'
+  fullPaths: '/articles' | '/contact' | '/main' | '/project/$name'
   fileRoutesByTo: FileRoutesByTo
-  to: '/articles' | '/contacts' | '/main' | '/project/$name'
-  id: '__root__' | '/articles' | '/contacts' | '/main' | '/project/$name'
+  to: '/articles' | '/contact' | '/main' | '/project/$name'
+  id: '__root__' | '/articles' | '/contact' | '/main' | '/project/$name'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   ArticlesRoute: typeof ArticlesRoute
-  ContactsRoute: typeof ContactsRoute
+  ContactRoute: typeof ContactRoute
   MainRoute: typeof MainRoute
   ProjectNameRoute: typeof ProjectNameRoute
 }
@@ -78,11 +78,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contacts': {
-      id: '/contacts'
-      path: '/contacts'
-      fullPath: '/contacts'
-      preLoaderRoute: typeof ContactsRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/articles': {
@@ -104,7 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   ArticlesRoute: ArticlesRoute,
-  ContactsRoute: ContactsRoute,
+  ContactRoute: ContactRoute,
   MainRoute: MainRoute,
   ProjectNameRoute: ProjectNameRoute,
 }
