@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Arial Black';
+  src: url('/assets/fonts/arial_black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-arial-black: "Arial Black", Arial, system-ui, sans-serif;
+}
+
+@layer utilities {
+  .clip-default {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .clip-fancy {
+    clip-path: polygon(0px 0px, 100% 2.03828%, 97.8889% 97.9617%, 2.11107% 100%);
+  }
+}
