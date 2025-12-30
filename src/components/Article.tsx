@@ -1,4 +1,5 @@
 import { Calendar, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import type { ElementType, ReactNode } from "react";
 
 type ArticleProps = {
@@ -37,7 +38,7 @@ export function Article({
       will-change-[clip-path]
     "
         >
-          <img
+          <Image
             src={image}
             alt={title}
             className="

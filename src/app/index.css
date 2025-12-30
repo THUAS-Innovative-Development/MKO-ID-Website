@@ -19,7 +19,7 @@ body {
 
 .hero {
   position: relative;
-  background-image: url("/assets/img/dutch_innovation_factory_cover.jpeg");
+  /* background-image: url("/assets/img/dutch_innovation_factory_cover.jpeg"); */
   background-size: cover;
   background-position: center;
   display: flex;
