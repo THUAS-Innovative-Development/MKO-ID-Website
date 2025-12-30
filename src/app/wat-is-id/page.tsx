@@ -1,5 +1,6 @@
 import { Article } from "@/src/components/Article";
 import { ArrowRight, Check, Rocket, MapPin, Brain, Search, PenTool, Terminal } from "lucide-react";
+import Link from "next/link";
 
 const idProjects = [
   {
@@ -137,9 +138,9 @@ export default function WatIsID() {
       <div className="bg-[#223343] border-t border-[#9EA700] py-16 text-center text-white">
         <h2 className="text-2xl font-bold mb-4">Klaar voor de uitdaging?</h2>
         <p className="text-gray-400 max-w-xl mx-auto mb-8">Innovative Development vraagt initiatief, maar geeft je vrijheid terug.</p>
-        <a href="#" className="bg-[#9EA700] hover:bg-[#8e9600] text-white font-bold py-3 px-8 text-lg transition-colors inline-flex items-center gap-2 rounded-sm shadow-md">
+        <Link href="#" className="bg-[#9EA700] hover:bg-[#8e9600] text-white font-bold py-3 px-8 text-lg transition-colors inline-flex items-center gap-2 rounded-sm shadow-md">
           Bekijk de toelatingseisen <ArrowRight size={20} />
-        </a>
+        </Link>
       </div>
     </div>
   )
