@@ -3,7 +3,7 @@ type ContactProps = {
   title: string;        // GT Walsheim
   description: string;  // Aktiv Grotesk
   phone?: string;
-  link: string;
+  email?: string;
 };
 
 export default function ContactCard({
@@ -11,38 +11,67 @@ export default function ContactCard({
   title,
   description,
   phone,
-  link,
+  email,
 }: ContactProps) {
   return (
-    <div className="flex flex-col md:flex-row items-center md:items-start gap-6 py-8">
+    <div className="flex flex-col md:flex-row items-stretch gap-6 py-8">
+      
       {/* Tekst links */}
-      <div className="flex-1">
-        <h2 className="text-[#003a8f] text-xl font-semibold" style={{ fontFamily: "GT Walsheim, sans-serif" }}>
+      <div
+        className="
+          flex flex-col items-start
+          gap-[1.6rem]
+          bg-[#e8ebec]
+          text-[#223343]
+          text-[1.6rem]
+          font-medium
+          leading-[1.625]
+          p-[6.4rem_4.8rem]
+          flex-[1_1_67%]
+        "
+        style={{
+          fontFamily: 'Aktiv Grotesk, sans-serif',
+          WebkitFontSmoothing: 'antialiased',
+        }}
+      >
+        <h2
+          className="text-[#223343]"
+          style={{ fontFamily: 'GT Walsheim, sans-serif' }}
+        >
           {title}
         </h2>
-        <p className="text-gray-700 mt-1" style={{ fontFamily: "Aktiv Grotesk, sans-serif" }}>
-          {description}
-        </p>
+
+        <p>{description}</p>
+
         {phone && (
-          <p className="text-gray-700 mt-1" style={{ fontFamily: "Aktiv Grotesk, sans-serif" }}>
+          <p>
             <strong>Telefoon:</strong> {phone}
           </p>
         )}
-        <a
-          href={link}
-          className="text-[#003a8f] underline mt-1 inline-block"
-          style={{ fontFamily: "Aktiv Grotesk, sans-serif" }}
-        >
-          E-mail
-        </a>
+
+        {email && (
+          <a
+            href={email}
+            className="underline text-[#223343] hover:text-[#003a8f]"
+          >
+            {email}
+          </a>
+        )}
       </div>
 
       {/* Afbeelding rechts */}
-      <img
-        src={image}
-        alt={title}
-        className="w-48 h-48 md:w-56 md:h-56 object-cover rounded"
-      />
+      <div className="flex items-center justify-center flex-[1_1_33%]">
+        <img
+          src={image}
+          alt={title}
+          className="
+            w-56 h-56
+            md:w-64 md:h-64
+            object-cover
+            rounded
+          "
+        />
+      </div>
     </div>
   );
 }
