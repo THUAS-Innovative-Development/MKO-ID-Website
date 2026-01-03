@@ -11,15 +11,15 @@ export default function Contact() {
       link: "mailto:sebastiaan.rieter@hhs.nl",
     },
     {
-      image: "/images/arend.jpg",
-      title: "Drs. A. (Arend) Hardorff",
-      description: "Lid College van Bestuur",
+      image: "/images/Jan.jpg",
+      title: "Drs. Jan de Vries",
+      description: "Test",
       link: "mailto:arend.hardorff@hhs.nl",
     },
     {
       image: "/images/hans.jpg",
-      title: "H. (Hans) Nederlof",
-      description: "Lid College van Bestuur",
+      title: "H. Hans Nederlof",
+      description: "Test",
       link: "mailto:hans.nederlof@hhs.nl",
     },
   ];
