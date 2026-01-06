@@ -8,6 +8,18 @@ type ContactProps = {
   email?: string;
 };
 
+const withBasePath = (src: string) => {
+  if (src.startsWith("http://") || src.startsWith("https://")) return src;
+
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+  if (basePath && src.startsWith(basePath + "/")) return src;
+
+  const normalized = src.startsWith("/") ? src : `/${src}`;
+
+  return `${basePath}${normalized}`;
+};
+
 export default function ContactCard({
   image,
   title,
@@ -15,6 +27,7 @@ export default function ContactCard({
   phone,
   email,
 }: ContactProps) {
+  const imgSrc = withBasePath(image);
   return (
     <div className="flex flex-col md:flex-row items-stretch gap-6 py-8">
       {/* Tekst links */}
@@ -64,7 +77,7 @@ export default function ContactCard({
       <div className="flex items-center justify-center flex-[1_1_33%]">
         <div className="relative w-56 h-56 md:w-64 md:h-64">
           <Image
-            src={image}
+            src={imgSrc}
             alt={title}
             fill
             className="object-cover rounded"
