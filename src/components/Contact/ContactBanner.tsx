@@ -2,7 +2,7 @@
 
 export default function ContactBanner() {
   return (
-    <div className="w-screen bg-[#9EA700] relative overflow-hidden">
+    <div className="w-screen bg-[#9EA700] relative overflow-hidden py-12">
 
       <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row lg:items-stretch lg:justify-between">
 
