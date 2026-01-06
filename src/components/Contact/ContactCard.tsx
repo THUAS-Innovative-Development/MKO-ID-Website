@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type ContactProps = {
   image: string;
   title: string;        // GT Walsheim
@@ -61,7 +63,7 @@ export default function ContactCard({
 
       {/* Afbeelding rechts */}
       <div className="flex items-center justify-center flex-[1_1_33%]">
-        <img
+        <Image
           src={image}
           alt={title}
           className="
