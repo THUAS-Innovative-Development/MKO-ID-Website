@@ -37,6 +37,9 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: "/MKO-ID-Website"
         run: npm run build
 
+      - name: Ensure Pages serves _next (nojekyll)
+        run: touch ./out/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
