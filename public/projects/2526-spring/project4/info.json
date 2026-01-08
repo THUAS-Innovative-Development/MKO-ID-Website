@@ -1,0 +1,7 @@
+{
+  "project_name": "Crop Health Analyzer",
+  "members": ["Marta Ruiz", "John Doe"],
+  "coach": "Dr. Patel",
+  "organiser": "AgriAI",
+  "image": "./assets/crop-health.svg"
+}
