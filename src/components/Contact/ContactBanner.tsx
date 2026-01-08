@@ -1,4 +1,5 @@
-'use client';
+"use client";
+import Image from 'next/image';
 
 export default function ContactBanner() {
   return (
@@ -28,11 +29,12 @@ export default function ContactBanner() {
         </div>
 
         {/* Afbeelding rechts */}
-        <div className="w-full lg:w-[600px] mt-6 lg:mt-0 lg:ml-8">
-          <img
+        <div className="w-full lg:w-[600px] mt-6 lg:mt-0 lg:ml-8 relative h-64 lg:h-[360px]">
+          <Image
             src="https://www.dehaagsehogeschool.nl/sites/hhs/files/2022-11/_MG_8857.jpg"
             alt="Uitzicht vanaf het hoofdgebouw De Haagse Hogeschool"
-            className="w-full h-auto object-cover rounded"
+            fill
+            className="object-cover rounded"
           />
         </div>
 

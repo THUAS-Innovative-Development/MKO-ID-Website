@@ -1,10 +1,22 @@
 import fs from 'fs';
 import path from 'path';
 import MDComponents from '../../../../utils/MDComponents';
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 type Params = { term: string; project: string };
+
+interface ProjectInfo {
+  project_name?: string;
+  members?: string[] | string;
+  coach?: string;
+  organiser?: string;
+  image?: string;
+  year?: string | number;
+  tags?: string[];
+  [key: string]: unknown;
+}
 
 export async function generateStaticParams() {
   const projectsDir = path.join(process.cwd(), 'public', 'projects');
@@ -28,12 +40,12 @@ export default async function ProjectPage({ params }: { params: Params | Promise
   const { term, project } = await params;
   const base = path.join(process.cwd(), 'public', 'projects', term, project);
 
-  let info: any = null;
+  let info: ProjectInfo | null = null;
   let markdownContent = '';
   try {
     const infoPath = path.join(base, 'info.json');
     if (fs.existsSync(infoPath)) {
-      info = JSON.parse(fs.readFileSync(infoPath, 'utf8'));
+      info = JSON.parse(fs.readFileSync(infoPath, 'utf8')) as ProjectInfo;
     }
     const mdPath = path.join(base, 'description.md');
     if (fs.existsSync(mdPath)) {
@@ -58,7 +70,7 @@ export default async function ProjectPage({ params }: { params: Params | Promise
 
       {imageSrc && (
         <div className="w-full aspect-3/2 bg-gray-50 overflow-hidden max-h-72 md:max-h-96 mb-4">
-          <img src={imageSrc} alt={info?.project_name ?? project} className="w-full h-full object-cover" />
+          <Image src={imageSrc} alt={info?.project_name ?? project} width={1200} height={800} className="w-full h-full object-cover" />
         </div>
       )}
 

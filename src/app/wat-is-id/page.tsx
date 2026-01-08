@@ -40,7 +40,7 @@ export default function WatIsID() {
               <h1 className="font-arial-black text-5xl lg:text-6xl uppercase leading-none mb-4 text-[#223343]">Innovative Development</h1>
             </div>
             <p className="text-xl font-medium leading-relaxed text-gray-700 mb-8">
-              "Innovatieve oplossingen bedenken en uitvoeren voor bedrijven en organisaties. Vooral buiten de school, én out of the box."
+              Innovatieve oplossingen bedenken en uitvoeren voor bedrijven en organisaties. Vooral buiten de school, én out of the box.
             </p>
             <div className="flex flex-wrap gap-3">
                <Badge text="Geen hoorcolleges" />

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @next/next/no-img-element, jsx-a11y/alt-text */
 // no runtime React import needed; MDX produces React elements via JSX here
 // Using public/ assets: resolve markdown image/PDF paths to /images/* served by Vercel
 

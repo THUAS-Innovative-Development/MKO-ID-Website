@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type ProjectEntry = {
   term: string;
@@ -21,13 +22,14 @@ export default function ProjectsPage() {
     for (const term of terms) {
       const termPath = path.join(projectsRoot, term);
       const projects = fs.readdirSync(termPath).filter((p) => fs.statSync(path.join(termPath, p)).isDirectory());
-      for (const proj of projects) {
+        for (const proj of projects) {
         const base = path.join(termPath, proj);
-        let info: any = null;
+        type ProjectInfoLite = { project_name?: string; image?: string; [key: string]: unknown };
+        let info: ProjectInfoLite | null = null;
         try {
           const infoPath = path.join(base, 'info.json');
-          if (fs.existsSync(infoPath)) info = JSON.parse(fs.readFileSync(infoPath, 'utf8'));
-        } catch (e) {
+          if (fs.existsSync(infoPath)) info = JSON.parse(fs.readFileSync(infoPath, 'utf8')) as ProjectInfoLite;
+        } catch {
           info = null;
         }
 
@@ -42,8 +44,7 @@ export default function ProjectsPage() {
         entries.push({ term, slug: proj, name, image });
       }
     }
-  } catch (e) {
-    // ignore and show empty list
+  } catch {
   }
 
   const grouped: Record<string, ProjectEntry[]> = entries.reduce((acc, e) => {
@@ -66,8 +67,8 @@ export default function ProjectsPage() {
                 {grouped[term].map((e) => (
                   <Link key={`${e.term}/${e.slug}`} href={`/projects/${e.term}/${e.slug}`} className="block no-underline text-inherit">
                     <article className="border border-gray-200 rounded-none bg-white overflow-hidden flex flex-col items-stretch h-full">
-                      <div className="w-full h-40 bg-gray-50 flex items-center justify-center">
-                        <img src={e.image} alt={e.name} className="w-full h-full object-cover" />
+                      <div className="w-full h-40 bg-gray-50 overflow-hidden">
+                        <Image src={e.image} alt={e.name} width={480} height={320} className="w-full h-full object-cover" />
                       </div>
                       <div className="p-2 text-center">
                         <span className="text-sm font-medium">{e.name}</span>
