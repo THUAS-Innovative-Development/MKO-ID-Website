@@ -11,6 +11,17 @@ type ProjectEntry = {
 };
 
 export default function ProjectsPage() {
+  const withBasePath = (src: string) => {
+    if (!src) return src;
+    if (src.startsWith('http://') || src.startsWith('https://')) return src;
+
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+    if (basePath && src.startsWith(basePath + '/')) return src;
+
+    const normalized = src.startsWith('/') ? src : `/${src}`;
+    return `${basePath}${normalized}`;
+  };
+
   const projectsRoot = path.join(process.cwd(), 'public', 'projects');
   const entries: ProjectEntry[] = [];
 
@@ -41,7 +52,9 @@ export default function ProjectsPage() {
             : `/projects/${term}/${proj}/${rawImage.replace(/^\.\//, '')}`
           : '/images/file.svg';
 
-        entries.push({ term, slug: proj, name, image });
+        const finalImage = withBasePath(image);
+
+        entries.push({ term, slug: proj, name, image: finalImage });
       }
     }
   } catch {
