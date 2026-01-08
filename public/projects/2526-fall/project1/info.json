@@ -1,0 +1,7 @@
+{
+    "project_name": "Solar Energy Dashboard",
+    "members": ["Alice Lee", "Bob Singh"],
+    "coach": "Dr. Nguyen",
+    "organiser": "GreenTech Initiative",
+    "image": "./assets/solar-dashboard.jpg"
+}
