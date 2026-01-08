@@ -40,6 +40,17 @@ export default async function ProjectPage({ params }: { params: Params | Promise
   const { term, project } = await params;
   const base = path.join(process.cwd(), 'public', 'projects', term, project);
 
+  const withBasePath = (src: string) => {
+    if (!src) return src;
+    if (src.startsWith('http://') || src.startsWith('https://')) return src;
+
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+    if (basePath && src.startsWith(basePath + '/')) return src;
+
+    const normalized = src.startsWith('/') ? src : `/${src}`;
+    return `${basePath}${normalized}`;
+  };
+
   let info: ProjectInfo | null = null;
   let markdownContent = '';
   try {
@@ -63,14 +74,15 @@ export default async function ProjectPage({ params }: { params: Params | Promise
   };
 
   const imageSrc = resolveImage(info?.image ?? null);
+  const finalImageSrc = imageSrc ? withBasePath(imageSrc) : null;
 
   return (
     <main className="p-6 max-w-4xl mx-auto">
       <h1 className="text-3xl font-extrabold mb-4">{info?.project_name ?? project}</h1>
 
-      {imageSrc && (
+      {finalImageSrc && (
         <div className="w-full aspect-3/2 bg-gray-50 overflow-hidden max-h-72 md:max-h-96 mb-4">
-          <Image src={imageSrc} alt={info?.project_name ?? project} width={1200} height={800} className="w-full h-full object-cover" />
+          <Image src={finalImageSrc} alt={info?.project_name ?? project} width={1200} height={800} className="w-full h-full object-cover" />
         </div>
       )}
 
