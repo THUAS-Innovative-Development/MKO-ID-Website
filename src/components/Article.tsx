@@ -4,7 +4,7 @@ import type { ElementType, ReactNode } from "react";
 
 type ArticleProps = {
   image: string;
-  date: string;
+  date?: string;
   title: string;
   description: string;
   link?: string;
@@ -12,6 +12,35 @@ type ArticleProps = {
   icon?: ElementType;
   accentColor?: string;
 };
+
+function Link({ link, themeColor }: { link?: string; themeColor: string }) {
+  if (link) {
+    return (
+      <a
+        href={link}
+        className="flex items-center gap-2 font-semibold mt-auto"
+        style={{ color: themeColor }}
+      >
+        <p className="text-lg">Lees meer</p>
+        <ArrowRight
+          size={20}
+          className="mt-1 transition-transform group-hover:translate-x-1"
+        />
+      </a>
+    );
+  } else {
+    <div
+      className="flex items-center gap-2 font-semibold mt-auto"
+      style={{ color: themeColor }}
+    >
+      <p className="text-lg">Lees meer</p>
+      <ArrowRight
+        size={20}
+        className="mt-1 transition-transform group-hover:translate-x-1"
+      />
+    </div>;
+  }
+}
 
 export function Article({
   image,
@@ -41,6 +70,7 @@ export function Article({
           <Image
             src={image}
             alt={title}
+            fill={true}
             className="
         h-full w-full object-cover
         transition-transform duration-500 ease-in-out
@@ -50,7 +80,7 @@ export function Article({
           />
         </div>
 
-        {variant === "project" && (
+        {variant === "project" && date && (
           <div
             className="absolute top-0 left-0 px-3 py-1 text-xs font-bold text-white shadow-sm z-10"
             style={{ backgroundColor: themeColor }}
@@ -85,17 +115,7 @@ export function Article({
           {description}
         </p>
 
-        <a
-          href={link}
-          className="flex items-center gap-2 font-semibold mt-auto"
-          style={{ color: themeColor }}
-        >
-          <p className="text-lg">Lees meer</p>
-          <ArrowRight
-            size={20}
-            className="mt-1 transition-transform group-hover:translate-x-1"
-          />
-        </a>
+        <Link link={link} themeColor={themeColor} />
       </div>
     </article>
   );

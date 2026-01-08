@@ -49,7 +49,7 @@ export default function WatIsID() {
             </div>
           </div>
           <div className="relative h-80 w-full shadow-xl rounded-sm overflow-hidden border-b-4 border-[#9EA700]">
-            <Image src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=800&auto=format&fit=crop" alt="Studenten samenwerkend" className="w-full h-full object-cover" />
+            <Image src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=800&auto=format&fit=crop" alt="Studenten samenwerkend" fill={true} className="w-full h-full object-cover" />
           </div>
         </div>
       </header>
