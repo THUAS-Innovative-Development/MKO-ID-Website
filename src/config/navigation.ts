@@ -8,4 +8,5 @@ export const navigationItems: NavigationItem[] = [
   { label: "Wat is ID?", href: "/wat-is-id" },
   { label: "Contact", href: "/contact" },
   { label: "Artikelen", href: "/articles" },
+  { label: "Projecten", href: "/projects" },
 ];
