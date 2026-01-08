@@ -1,9 +1,10 @@
 type ContactProps = {
   image: string;
-  title: string;        // GT Walsheim
-  description: string;  // Aktiv Grotesk
+  title: string;        
+  description: string;  
   phone?: string;
   email?: string;
+  adress?: string;
 };
 
 export default function ContactCard({
@@ -12,22 +13,23 @@ export default function ContactCard({
   description,
   phone,
   email,
+  adress,
 }: ContactProps) {
   return (
-    <div className="flex flex-col md:flex-row items-stretch gap-6 py-8">
-      
-      {/* Tekst links */}
+    <div className="flex flex-row flex-wrap items-stretch gap-6 py-8">
+
       <div
         className="
-          flex flex-col items-start
-          gap-[1.6rem]
+          flex flex-col justify-start
+          gap-4
           bg-[#e8ebec]
           text-[#223343]
-          text-[1.6rem]
+          text-base sm:text-lg
           font-medium
-          leading-[1.625]
-          p-[6.4rem_4.8rem]
-          flex-[1_1_67%]
+          leading-relaxed
+          p-6 sm:p-8
+          flex-[1_1_60%]
+          min-w-[200px]
         "
         style={{
           fontFamily: 'Aktiv Grotesk, sans-serif',
@@ -35,43 +37,38 @@ export default function ContactCard({
         }}
       >
         <h2
-          className="text-[#223343]"
-          style={{ fontFamily: 'GT Walsheim, sans-serif' }}
+         
         >
-          {title}
+          Naam: {title}
         </h2>
 
-        <p>{description}</p>
+        <p>Adres: {adress}</p>
+        <p>Functie: {description}</p>
 
-        {phone && (
-          <p>
-            <strong>Telefoon:</strong> {phone}
-          </p>
-        )}
+        {phone && <p>Telefoon: {phone}</p>}
 
         {email && (
-          <a
-            href={email}
-            className="underline text-[#223343] hover:text-[#003a8f]"
-          >
-            {email}
-          </a>
+          <p>
+            Email: <a href={`mailto:${email}`} className="underline text-[#223343] hover:text-[#003a8f]">{email}</a>
+          </p>
         )}
       </div>
 
-      {/* Afbeelding rechts */}
-      <div className="flex items-center justify-center flex-[1_1_33%]">
+     
+      <div className="flex items-center justify-center flex-[1_1_35%] min-w-[150px]">
         <img
           src={image}
           alt={title}
           className="
-            w-56 h-56
+            w-48 h-48
+            sm:w-56 sm:h-56
             md:w-64 md:h-64
             object-cover
             rounded
           "
         />
       </div>
+
     </div>
   );
 }

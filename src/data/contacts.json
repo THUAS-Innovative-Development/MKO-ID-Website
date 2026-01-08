@@ -4,18 +4,7 @@
     "title": "Dr. Sebastiaan Rieter",
     "description": "Docent",
     "phone": "06 86 81 44 19",
-    "email": "s.m.rieter@hhs.nl"
-  },
-  {
-    "image": "/images/Jan.jpg",
-    "title": "Drs. Jan de Vries",
-    "description": "Test",
-    "email": "mailto:arend.hardorff@hhs.nl"
-  },
-  {
-    "image": "/images/hans.jpg",
-    "title": "H. Hans Nederlof",
-    "description": "Test",
-    "email": "mailto:hans.nederlof@hhs.nl"
+    "email": "s.m.rieter@hhs.nl",
+    "adress": "Bleiswijkseweg 37, 2712 PB Zoetermeer" 
   }
 ]
