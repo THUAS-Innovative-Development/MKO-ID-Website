@@ -7,13 +7,13 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export default function Home() {
   const heroBg = `${basePath}/assets/img/dutch_innovation_factory_cover.jpeg`;
 
-  const colorBlocks = [
-    { color: "#223343", title: "Titel 1" },
-    { color: "#9EA700", title: "Titel 2" },
-    { color: "#1a2836", title: "Titel 3" },
-    { color: "#8e9600", title: "Titel 4" },
-    { color: "#f0f0f0", title: "Titel 5", darkText: true },
-    { color: "#223343", title: "Titel 6" },
+  const mosaicTiles = [
+    { image: `${basePath}/assets/img/lighthouse.jpg`, title: "Titel 1" },
+    { image: `${basePath}/assets/img/lighthouse2.jpg`, title: "Titel 2" },
+    { image: `${basePath}/assets/img/suriname_ingang.jpg`, title: "Titel 3" },
+    { image: `${basePath}/assets/img/lighthouse2.jpg`, title: "Titel 4" },
+    { image: `${basePath}/assets/img/drone.jpg`, title: "Titel 5" },
+    { image: `${basePath}/assets/img/lighthouse.jpg`, title: "Titel 6" },
   ];
 
   // dummy project data
@@ -66,18 +66,18 @@ export default function Home() {
 
       <div className="container">
         <section className="squangle-mosaic">
-          {colorBlocks.map((block, index) => (
+          {mosaicTiles.map((tile, index) => (
             <div key={index} className="mosaic-item group">
               <div
                 className={`squangle-tile tile-${index + 1}`}
-                style={{ backgroundColor: block.color }}
+                style={{ backgroundImage: `url(${tile.image})` }}
               ></div>
 
               <div className="tile-text">
                 <h3>
-                  {block.title}
+                  {tile.title}
                 </h3>
-                <ArrowRight className={`arrow-icon "text-[#9EA700]"}`} size={20} />
+                <ArrowRight className="arrow-icon text-[#9EA700]" size={20} />
               </div>
             </div>
           ))}
