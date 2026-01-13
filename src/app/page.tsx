@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function Home() {
-  const heroBg = `${basePath}/assets/img/dutch_innovation_factory_cover.jpeg`;
+  const heroBg = `${basePath}/assets/img/dif.jpg`;
 
   const mosaicTiles = [
     { image: `${basePath}/assets/img/lighthouse.jpg`, title: "Titel 1" },
