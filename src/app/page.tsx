@@ -1,68 +1,105 @@
 import "./index.css";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function Home() {
+  const heroBg = `${basePath}/assets/img/dutch_innovation_factory_cover.jpeg`;
+
+  const colorBlocks = [
+    { color: "#223343", title: "Titel 1" },
+    { color: "#9EA700", title: "Titel 2" },
+    { color: "#1a2836", title: "Titel 3" },
+    { color: "#8e9600", title: "Titel 4" },
+    { color: "#f0f0f0", title: "Titel 5", darkText: true },
+    { color: "#223343", title: "Titel 6" },
+  ];
+
   // dummy project data
   const projects = [
     {
       title: "Paardenstal",
+      description: "Een innovatief beheersysteem voor moderne maneges.",
       image: `${basePath}/assets/img/ps.png`,
-      link: "/project/paardenstal",
+      link: "/paardenstal",
     },
     {
       title: "Smart Kitchen",
+      description: "Slimme integratie van IT in de professionele keuken.",
       image: `${basePath}/assets/img/sk.png`,
-      link: "/project/smart-kitchen",
+      link: "/smart-kitchen",
     },
     {
       title: "Green Innovation",
+      description: "Technologie voor voedselbossen.",
       image: `${basePath}/assets/img/gi.png`,
-      link: "/project/green-innovation",
+      link: "/green-innovation",
     },
   ];
 
-  const heroBg = `${basePath}/assets/img/dutch_innovation_factory_cover.jpeg`;
-
   return (
-    <div className="home-page">
+    <div className="home-page flex-1 w-full min-w-0">
       <section
         className="hero full-width-hero"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="hero-content">
-          <div className="hero-block">
-            <h1>Dit is Innovative Development</h1>
+        <div className="hero-overlay"></div>
+        <div className="hero-content-container">
+          <div
+            className="squangle-box"
+            style={{
+              clipPath: 'polygon(5% 0px, 100% 4%, 96% 95%, 0% 100%)',
+            }}
+          >
+            <div className="squangle-content">
+              <h2 className="hero-subtitle">HBO-ICT Differentiatie</h2>
+              <h1>Innovative Development</h1>
+              <p>
+                Innovatieve oplossingen bedenken en uitvoeren voor bedrijven en organisaties.
+                Flexibel, en out of the box.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <div className="container">
-        <section className="color-blocks">
-          <div className="block" style={{ backgroundColor: "#00B1D2" }}></div>
-          <div className="block" style={{ backgroundColor: "#D24E4B" }}></div>
-          <div className="block" style={{ backgroundColor: "#2D3A4B" }}></div>
-          <div className="block" style={{ backgroundColor: "#A4A900" }}></div>
-          <div className="block" style={{ backgroundColor: "#FFC500" }}></div>
-          <div className="block" style={{ backgroundColor: "#666C84" }}></div>
+        <section className="squangle-mosaic">
+          {colorBlocks.map((block, index) => (
+            <div key={index} className="mosaic-item group">
+              <div
+                className={`squangle-tile tile-${index + 1}`}
+                style={{ backgroundColor: block.color }}
+              ></div>
+
+              <div className="tile-text">
+                <h3>
+                  {block.title}
+                </h3>
+                <ArrowRight className={`arrow-icon "text-[#9EA700]"}`} size={20} />
+              </div>
+            </div>
+          ))}
         </section>
 
         <section className="projects">
-          <div className="flex">
+          <div className="section-header">
             <h2 className="section-title">De leukste projecten bij ID</h2>
-            <a>Bekijk alle →</a>
+            <Link href="/projects" className="view-all-link">
+              Bekijk alle <ArrowRight className="arrow-icon ml-2" size={20} />
+            </Link>
           </div>
+
           <div className="projects-grid">
             {projects.map((p) => (
               <div className="project-card" key={p.title}>
-                <div
-                  className="project-image"
-                  style={{ backgroundImage: `url(${p.image})` }}
-                >
+                <div className="project-image" style={{ backgroundImage: `url(${p.image})` }}>
                   <div className="overlay"></div>
                   <div className="project-text">
                     <h3>{p.title}</h3>
-                    Lees meer →
+                    <p className="project-description">{p.description}</p>
+                    <Link className="read-more-link" href={`/projects${p.link}`}> Lees meer <ArrowRight className="arrow-icon" size={20} /></Link>
                   </div>
                 </div>
               </div>
