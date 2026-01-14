@@ -4,7 +4,6 @@ import { Article } from "@/src/components/Article";
 import { ArrowRight, Check, Rocket, MapPin, Brain, Search, PenTool, Terminal, LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const COLORS = {
   primary: "#223343",
@@ -71,7 +70,7 @@ function getRecentProjects() {
             image: image,
             term: term,
             slug: proj,
-            date: info.date || term 
+            date: info.date || term
         });
       });
     });
@@ -149,17 +148,22 @@ export default function WatIsID() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {recentProjects.length > 0 ? (
               recentProjects.map((item, i) => (
-                <Article
-                  key={i}
-                  image={item.image}
-                  title={item.name}
-                  description={item.description}
-                  date={item.term}
-                  icon={PROJECT_ICONS[i % PROJECT_ICONS.length]}
-                  variant="project"
-                  accentColor={COLORS.accent}
-                  link={`/projects/${item.term}/${item.slug}`}
-                />
+                <Link 
+                  key={i} 
+                  href={`/projects/${item.term}/${item.slug}`}
+                  className="block h-full group"
+                >
+                  <Article
+                    image={item.image}
+                    title={item.name}
+                    description={item.description}
+                    date={item.term}
+                    icon={PROJECT_ICONS[i % PROJECT_ICONS.length]}
+                    variant="project"
+                    accentColor={COLORS.accent}
+                    link={`/projects/${item.term}/${item.slug}`}
+                  />
+                </Link>
               ))
             ) : (
               <div className="col-span-3 text-center text-gray-500 italic">Geen projecten gevonden in public/projects...</div>
@@ -190,7 +194,7 @@ export default function WatIsID() {
         <h2 className="text-2xl font-bold mb-4">Klaar voor de uitdaging?</h2>
         <p className="text-gray-400 max-w-xl mx-auto mb-8">Innovative Development vraagt initiatief, maar geeft je vrijheid terug.</p>
         <Link href="https://www.dehaagsehogeschool.nl/opleidingen/hbo-bachelor/hbo-ict-innovative-development" target="_blank" rel="noopener noreferrer" className="text-white font-bold py-3 px-8 text-lg transition-colors inline-flex items-center gap-2 rounded-sm shadow-md hover:opacity-90" style={{ backgroundColor: COLORS.accent }}>
-          Bekijk de toelatingseisen <ArrowRight size={20} />
+          Bekijk de opleiding <ArrowRight size={20} />
         </Link>
       </div>
     </div>
