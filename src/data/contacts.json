@@ -6,5 +6,13 @@
     "phone": "06 86 81 44 19",
     "email": "s.m.rieter@hhs.nl",
     "adress": "Bleiswijkseweg 37, 2712 PB Zoetermeer" 
+  },
+  {
+    "image": "/images/weIt.png",
+    "title" : "We-It",
+    "description": "Opdrachtgevers",
+    "phone": "070 369 7509",
+    "email": "we-it@hhs.nl",
+    "adress": "Gildeweg 12, 2632 BA Nootdorp"
   }
 ]
