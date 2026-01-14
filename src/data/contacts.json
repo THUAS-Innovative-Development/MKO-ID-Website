@@ -1,18 +1,33 @@
-[
-  {
-    "image": "/images/test.jfif",
-    "title": "Dr. Sebastiaan Rieter",
-    "description": "Docent",
-    "phone": "06 86 81 44 19",
-    "email": "s.m.rieter@hhs.nl",
-    "adress": "Bleiswijkseweg 37, 2712 PB Zoetermeer" 
-  },
-  {
-    "image": "/images/weIt.png",
-    "title" : "We-It",
-    "description": "Opdrachtgevers",
-    "phone": "070 369 7509",
-    "email": "we-it@hhs.nl",
-    "adress": "Gildeweg 12, 2632 BA Nootdorp"
-  }
-]
+{
+  "locations": [
+    {
+      "slug": "zoetermeer",
+      "title": "Locatie Zoetermeer",
+      "image": "/images/zoetermeer.jfif",
+      "address": "Bleiswijkseweg 37, 2712 PB Zoetermeer",
+      "phone": "070-445 72 00",
+      "description": "De opleidingen op het gebied van data, AI en IT zijn gevestigd in de Dutch Innovation Factory.",
+      "openingstijd": "maandag t/m vrijdag: 08.30 tot 17.00 uur",
+      "Parkeren": "Bij de vestiging Zoetermeer heeft De Haagse Hogeschool een beperkt aantal parkeerplekken voor medewerkers tot haar beschikking. Het kan voorkomen dat de parkeerplaats vol is. In dat geval kan worden uitgeweken naar het parkeerterrein bij het station Lansingereland-Zoetermeer op 1 km afstand."
+      
+    }
+  ],
+  "contacts": [
+    {
+      "image": "/images/Sebastiaan.jfif",
+      "title": "Dr. Sebastiaan Rieter",
+      "description": "Docent",
+      "phone": "06 86 81 44 19",
+      "email": "s.m.rieter@hhs.nl",
+      "address": "Bleiswijkseweg 37, 2712 PB Zoetermeer"
+    },
+    {
+      "image": "/images/weIt.png",
+      "title": "We-It",
+      "description": "Opdrachtgevers",
+      "phone": "070 369 7509",
+      "email": "we-it@hhs.nl",
+      "address": "Gildeweg 12, 2632 BA Nootdorp"
+    }
+  ]
+}

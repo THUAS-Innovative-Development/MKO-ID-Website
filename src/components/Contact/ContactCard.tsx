@@ -1,11 +1,5 @@
-type ContactProps = {
-  image: string;
-  title: string;        
-  description: string;  
-  phone?: string;
-  email?: string;
-  adress?: string;
-};
+import { ContactProps } from '@/src/data/type';
+
 
 export default function ContactCard({
   image,
@@ -13,7 +7,7 @@ export default function ContactCard({
   description,
   phone,
   email,
-  adress,
+  address,
 }: ContactProps) {
   return (
     <div className="flex flex-row flex-wrap items-stretch gap-6 py-8">
@@ -42,15 +36,13 @@ export default function ContactCard({
           Naam: {title}
         </h2>
 
-        <p>Adres: {adress}</p>
+        <p>Adres: {address}</p>
         <p>Functie: {description}</p>
 
         {phone && <p>Telefoon: {phone}</p>}
 
         {email && (
-          <p>
-            Email: <a href={`mailto:${email}`} className="underline text-[#223343] hover:text-[#003a8f]">{email}</a>
-          </p>
+         <p>Email: <a href="mailto:${contact.email}">{email}</a></p>
         )}
       </div>
 
