@@ -2,9 +2,8 @@ name: Deploy Next.js static site to GitHub Pages
 
 on:
   push:
-    branches:
-      - main  # deploy on every push to main
-  workflow_dispatch: # allow manual runs
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -12,8 +11,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -25,7 +24,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22"   # or 20 / whatever you're using
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
@@ -40,17 +39,22 @@ jobs:
       - name: Ensure Pages serves _next (nojekyll)
         run: touch ./out/.nojekyll
 
+      - name: Verify export output exists
+        run: |
+          ls -la out
+          test -f out/index.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
