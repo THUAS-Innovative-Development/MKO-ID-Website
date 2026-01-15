@@ -1,8 +1,10 @@
-'use client';
+"use client";
+import Image from 'next/image';
 
 export default function ContactBanner() {
   return (
-    <div className="w-screen bg-[#9EA700] relative overflow-hidden">
+    <div className="w-screen bg-[#9EA700] relative overflow-hidden py-12">
+
       <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row lg:items-stretch lg:justify-between">
 
         <div
@@ -26,10 +28,11 @@ export default function ContactBanner() {
         </div>
 
         <div className="w-full lg:w-1/2 mt-4 lg:mt-0 lg:ml-8">
-          <img
+          <Image
             src="https://www.dehaagsehogeschool.nl/sites/hhs/files/2022-11/_MG_8857.jpg"
             alt="Uitzicht vanaf het hoofdgebouw De Haagse Hogeschool"
-            className="w-full h-auto object-cover rounded"
+            fill
+            className="object-cover rounded"
           />
         </div>
 

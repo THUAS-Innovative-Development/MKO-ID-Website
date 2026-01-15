@@ -1,0 +1,7 @@
+{
+  "project_name": "Energy Usage Optimizer",
+  "members": ["Oliver Smith", "Zara Khan"],
+  "coach": "Prof. Müller",
+  "organiser": "SmartGrid",
+  "image": "./assets/energy-optimizer.svg"
+}
