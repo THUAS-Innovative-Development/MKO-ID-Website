@@ -83,6 +83,15 @@ const withBasePath = (src: string) => {
   return `${basePath}${normalized}`;
 };
 
+interface Project {
+  name: string;
+  description: string;
+  image: string;
+  term: string;
+  slug: string;
+  date: string;
+}
+
 function getRecentProjects() {
   try {
     const projectsRoot = path.join(process.cwd(), "public", "projects");
@@ -92,7 +101,7 @@ function getRecentProjects() {
       .readdirSync(projectsRoot)
       .filter((t) => fs.statSync(path.join(projectsRoot, t)).isDirectory());
 
-    let allProjects: any[] = [];
+    const allProjects: Project[] = [];
     terms.forEach((term) => {
       const termPath = path.join(projectsRoot, term);
       const projects = fs
@@ -101,7 +110,12 @@ function getRecentProjects() {
 
       projects.forEach((proj) => {
         const infoPath = path.join(termPath, proj, "info.json");
-        let info: any = {};
+        let info: {
+          project_name?: string;
+          description?: string;
+          image?: string;
+          date?: string;
+        } = {};
         if (fs.existsSync(infoPath)) {
           info = JSON.parse(fs.readFileSync(infoPath, "utf8"));
         }
@@ -133,38 +147,33 @@ export default function WatIsID() {
   const recentProjects = getRecentProjects();
 
   return (
-    <div
-      className="w-full font-sans bg-white"
-      style={{ color: COLORS.primary }}
-    >
+    <div className="w-full bg-white t-page" style={{ color: COLORS.primary }}>
+      {/* HERO */}
       <header className="relative bg-[#f0f0f0] py-12 md:py-20 overflow-hidden">
-        <div className="absolute top-0 right-0 w-2/3 h-full bg-white [clip-path:polygon(20%_0,100%_0,100%_100%,0%_100%)] z-0 hidden md:block"></div>
+        <div className="absolute top-0 right-0 w-2/3 h-full bg-white [clip-path:polygon(20%_0,100%_0,100%_100%,0%_100%)] z-0 hidden md:block" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <div
               className="border-l-4 pl-6 mb-6"
               style={{ borderColor: COLORS.accent }}
             >
-              <h2
-                className="text-sm font-bold uppercase tracking-widest mb-2"
-                style={{ color: COLORS.accent }}
-              >
-                HBO-ICT Differentiatie
-              </h2>
-              <h1 className="font-arial-black text-4xl md:text-5xl lg:text-6xl uppercase leading-none mb-4">
-                Innovative Development
-              </h1>
+              <h2 className="t-eyebrow mb-2">HBO-ICT Differentiatie</h2>
+              <h1 className="t-h1 mb-4">Innovative Development</h1>
             </div>
-            <p className="text-lg md:text-xl font-medium leading-relaxed text-gray-700 mb-8">
+
+            <p className="t-lead mb-8">
               Innovatieve oplossingen bedenken en uitvoeren voor bedrijven en
               organisaties. Vooral buiten de school, én out of the box.
             </p>
+
             <div className="flex flex-wrap gap-3">
               {DATA.features.map((text, i) => (
                 <Badge key={i} text={text} />
               ))}
             </div>
           </div>
+
           <div
             className="relative h-64 md:h-80 w-full shadow-xl rounded-sm overflow-hidden border-b-4"
             style={{ borderColor: COLORS.accent }}
@@ -172,7 +181,7 @@ export default function WatIsID() {
             <Image
               src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=800&auto=format&fit=crop"
               alt="Studenten samenwerkend"
-              fill={true}
+              fill
               className="object-cover"
               priority
             />
@@ -180,27 +189,26 @@ export default function WatIsID() {
         </div>
       </header>
 
+      {/* SECTION 1 */}
       <section className="py-12 md:py-20 max-w-7xl mx-auto px-6">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl md:text-3xl font-arial-black uppercase">
-            Niet stampen, maar doen
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mt-4 text-lg">
+          <h2 className="t-h2">Niet stampen, maar doen</h2>
+          <p className="t-body mt-4 max-w-2xl mx-auto">
             Bij ID zit je niet in de collegebanken. Je wordt behandeld als een{" "}
             <strong>junior professional</strong>.
           </p>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div className="bg-gray-50 p-8 rounded-sm border-l-4 border-gray-300 opacity-75">
-            <h3 className="text-xl font-bold text-gray-500 mb-4 uppercase">
-              Traditioneel Onderwijs
-            </h3>
+            <h3 className="t-h3 text-gray-500 mb-4">Traditioneel Onderwijs</h3>
             <ul className="space-y-4">
               {DATA.oldSchool.map((text, i) => (
                 <OldSchoolItem key={i} text={text} />
               ))}
             </ul>
           </div>
+
           <div
             className="bg-white p-8 rounded-sm shadow-lg border-l-4 relative"
             style={{ borderColor: COLORS.accent }}
@@ -211,9 +219,11 @@ export default function WatIsID() {
             >
               Jouw werkwijze
             </div>
-            <h3 className="text-xl font-bold mb-4 uppercase">
+
+            <h3 className="t-h3 mb-4" style={{ color: COLORS.primary }}>
               Bij Innovative Development
             </h3>
+
             <ul className="space-y-4">
               {DATA.newSchool.map((text, i) => (
                 <NewSchoolItem key={i} text={text} />
@@ -223,6 +233,7 @@ export default function WatIsID() {
         </div>
       </section>
 
+      {/* SECTION 2 (dark) */}
       <section
         className="text-white py-12 md:py-20 clip-path-slant-top"
         style={{ backgroundColor: COLORS.primary }}
@@ -232,14 +243,13 @@ export default function WatIsID() {
             className="mb-12 border-l-4 pl-6"
             style={{ borderColor: COLORS.accent }}
           >
-            <h2 className="text-3xl md:text-4xl font-arial-black uppercase">
-              Het ID Profiel
-            </h2>
-            <p className="text-gray-300 mt-2 text-lg">
+            <h2 className="t-h2">Het ID Profiel</h2>
+            <p className="t-on-dark-body mt-2">
               Je wordt meer dan alleen een programmeur. Je ontwikkelt een breed
               profiel.
             </p>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {DATA.skills.map((skill, i) => (
               <SkillCard key={i} {...skill} />
@@ -248,19 +258,13 @@ export default function WatIsID() {
         </div>
       </section>
 
+      {/* SECTION 3 */}
       <section className="py-12 md:py-20 bg-gray-50 clip-path-slant-bottom">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h3
-              className="font-bold uppercase tracking-wider text-sm mb-2"
-              style={{ color: COLORS.accent }}
-            >
-              Portfolio
-            </h3>
-            <h2 className="text-3xl md:text-4xl font-arial-black uppercase">
-              Wat maken studenten?
-            </h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            <h3 className="t-eyebrow mb-2">Portfolio</h3>
+            <h2 className="t-h2">Wat maken studenten?</h2>
+            <p className="t-body-sm mt-4 max-w-2xl mx-auto">
               Voorbeelden van recente projecten bij echte opdrachtgevers.
             </p>
           </div>
@@ -286,33 +290,31 @@ export default function WatIsID() {
                 </Link>
               ))
             ) : (
-              <div className="col-span-3 text-center text-gray-500 italic">
+              <div className="col-span-3 text-center t-muted italic">
                 Geen projecten gevonden in public/projects...
               </div>
             )}
           </div>
+
           <div className="mt-12 text-center">
-            <Link
-              href="/projects"
-              className="text-[#223343] font-bold border-b-2 border-[#9EA700] hover:text-[#9EA700] transition-colors pb-1"
-            >
+            <Link href="/projects" className="t-link">
               Bekijk alle projecten
             </Link>
           </div>
         </div>
       </section>
 
+      {/* SECTION 4 */}
       <section className="py-12 md:py-20 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-arial-black uppercase">
-            Hoe ziet een semester eruit?
-          </h2>
-          <p className="text-gray-600 mt-2">
+          <h2 className="t-h2">Hoe ziet een semester eruit?</h2>
+          <p className="t-body-sm mt-2">
             Van vage vraag tot werkend prototype in 20 weken.
           </p>
         </div>
+
         <div className="relative">
-          <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 hidden md:block z-0"></div>
+          <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 hidden md:block z-0" />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
             {DATA.process.map((step, i) => (
               <ProcessStep key={i} number={(i + 1).toString()} {...step} />
@@ -321,15 +323,18 @@ export default function WatIsID() {
         </div>
       </section>
 
+      {/* CTA */}
       <div
         className="border-t py-16 text-center text-white"
         style={{ backgroundColor: COLORS.primary, borderColor: COLORS.accent }}
       >
-        <h2 className="text-2xl font-bold mb-4">Klaar voor de uitdaging?</h2>
-        <p className="text-gray-400 max-w-xl mx-auto mb-8">
+        <h2 className="t-h2 text-white">Klaar voor de uitdaging?</h2>
+
+        <p className="t-on-dark-muted max-w-xl mx-auto mb-8 mt-4">
           Innovative Development vraagt initiatief, maar geeft je vrijheid
           terug.
         </p>
+
         <Link
           href="https://www.dehaagsehogeschool.nl/opleidingen/hbo-bachelor/hbo-ict-innovative-development"
           target="_blank"
@@ -351,18 +356,20 @@ function Badge({ text }: { text: string }) {
     </span>
   );
 }
+
 function OldSchoolItem({ text }: { text: string }) {
   return (
     <li className="flex items-start gap-3">
       <div className="mt-1 min-w-[20px]">
-        <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+        <div className="w-2 h-2 rounded-full bg-gray-300" />
       </div>
-      <span className="text-gray-500 line-through decoration-gray-400">
+      <span className="t-body-sm text-gray-500 line-through decoration-gray-400">
         {text}
       </span>
     </li>
   );
 }
+
 function NewSchoolItem({ text }: { text: string }) {
   return (
     <li className="flex items-start gap-3">
@@ -372,12 +379,13 @@ function NewSchoolItem({ text }: { text: string }) {
         strokeWidth={3}
         style={{ color: COLORS.accent }}
       />
-      <span className="font-medium" style={{ color: COLORS.primary }}>
+      <span className="t-body-sm font-medium" style={{ color: COLORS.primary }}>
         {text}
       </span>
     </li>
   );
 }
+
 function SkillCard({
   icon: Icon,
   title,
@@ -398,13 +406,16 @@ function SkillCard({
       >
         <Icon size={24} style={{ color: COLORS.accent }} />
       </div>
-      <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-wide">
-        {title}
-      </h3>
-      <p className="text-gray-400 leading-relaxed text-sm flex-grow">{desc}</p>
+
+      <h3 className="t-h3 text-white mb-3">{title}</h3>
+
+      <p className="t-on-dark-muted text-sm leading-relaxed flex-grow">
+        {desc}
+      </p>
     </div>
   );
 }
+
 function ProcessStep({
   number,
   title,
@@ -422,13 +433,12 @@ function ProcessStep({
       >
         {number}
       </div>
-      <h3
-        className="text-lg font-bold mb-2 uppercase"
-        style={{ color: COLORS.primary }}
-      >
+
+      <h3 className="t-h3 mb-2" style={{ color: COLORS.primary }}>
         {title}
       </h3>
-      <p className="text-gray-600 text-sm leading-relaxed flex-grow">{desc}</p>
+
+      <p className="t-body-sm flex-grow">{desc}</p>
     </div>
   );
 }

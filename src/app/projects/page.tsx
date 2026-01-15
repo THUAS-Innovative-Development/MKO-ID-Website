@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
-import Image from "next/image";
 import { Article } from "@/src/components/Article";
 
 type ProjectEntry = {
@@ -44,7 +43,6 @@ export default function ProjectsPage() {
       }
 
       if (!line) break;
-
       if (line.startsWith("#")) break;
 
       paraLines.push(line);
@@ -52,13 +50,12 @@ export default function ProjectsPage() {
 
     const text = paraLines.join(" ").replace(/\s+/g, " ").trim();
     if (!text) return "";
-
     return text.length > maxLen
       ? text.slice(0, maxLen - 1).trimEnd() + "…"
       : text;
   };
 
-  const toIsoDate = (d: Date) => d.toISOString().slice(0, 10); // YYYY-MM-DD
+  const toIsoDate = (d: Date) => d.toISOString().slice(0, 10);
 
   const projectsRoot = path.join(process.cwd(), "public", "projects");
   const entries: ProjectEntry[] = [];
@@ -112,15 +109,14 @@ export default function ProjectsPage() {
         const finalImage = withBasePath(image);
 
         let description = (info?.description ?? "").trim();
-
         const descPath = path.join(base, "description.md");
         if (!description && fs.existsSync(descPath)) {
           const md = fs.readFileSync(descPath, "utf8");
           description = extractTeaserFromMarkdown(md);
         }
         if (!description) description = proj;
-        let date = (info?.date ?? "").trim();
 
+        let date = (info?.date ?? "").trim();
         if (!date) {
           try {
             const stat = fs.existsSync(descPath)
@@ -144,50 +140,51 @@ export default function ProjectsPage() {
     }
   } catch {}
 
-  const grouped: Record<string, ProjectEntry[]> = entries.reduce((acc, e) => {
-    acc[e.term] = acc[e.term] || [];
-    acc[e.term].push(e);
-    return acc;
-  }, {} as Record<string, ProjectEntry[]>);
+  const grouped: Record<string, ProjectEntry[]> = entries.reduce(
+    (acc, e) => {
+      acc[e.term] = acc[e.term] || [];
+      acc[e.term].push(e);
+      return acc;
+    },
+    {} as Record<string, ProjectEntry[]>
+  );
 
-  return (
-    <main className="px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">Projects</h1>
-      {entries.length === 0 ? (
-        <p>No projects found.</p>
-      ) : (
-        <div className="space-y-8">
-          {Object.keys(grouped).map((term) => (
-            <section key={term}>
-              <h2 className="text-xl font-semibold mb-3">{term}</h2>
-              <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-                {grouped[term].map((e) => (
-                  <Link
-                    key={`${e.term}/${e.slug}`}
-                    href={`/projects/${e.term}/${e.slug}`}
-                  >
-                    {/* <article className="border border-gray-200 rounded-none bg-white overflow-hidden flex flex-col items-stretch h-full">
-                      <div className="w-full h-40 bg-gray-50 overflow-hidden">
-                        <Image src={e.image} alt={e.name} width={480} height={320} className="w-full h-full object-cover" />
-                      </div>
-                      <div className="p-2 text-center">
-                        <span className="text-sm font-medium">{e.name}</span>
-                      </div>
-                    </article> */}
-                    <Article
-                      key={e.slug}
-                      image={e.image}
-                      title={e.name}
-                      description={e.description}
-                      date={e.date}
-                    />
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-      )}
+    return (
+    <main className="l-page">
+      <section className="l-container l-section">
+        <h1 className="t-h2 mb-6">Projects</h1>
+
+        {entries.length === 0 ? (
+          <p className="t-body">No projects found.</p>
+        ) : (
+          <div className="space-y-10">
+            {Object.keys(grouped).map((term) => (
+              <section key={term}>
+                <h2 className="t-h3 normal-case tracking-normal mb-4">
+                  {term}
+                </h2>
+
+                <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+                  {grouped[term].map((e) => (
+                    <Link
+                      key={`${e.term}/${e.slug}`}
+                      href={`/projects/${e.term}/${e.slug}`}
+                      className="block"
+                    >
+                      <Article
+                        image={e.image}
+                        title={e.name}
+                        description={e.description}
+                        date={e.date}
+                      />
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        )}
+      </section>
     </main>
   );
 }
