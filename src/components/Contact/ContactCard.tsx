@@ -1,6 +1,5 @@
-import { ContactProps } from '@/src/data/type';
-import Image from 'next/image';
-
+import { ContactProps } from "@/src/data/type";
+import Image from "next/image";
 
 export default function ContactCard({
   image,
@@ -10,10 +9,22 @@ export default function ContactCard({
   email,
   address,
 }: ContactProps) {
+  const withBasePath = (src: string) => {
+    if (src.startsWith("http://") || src.startsWith("https://")) return src;
+
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+    if (basePath && src.startsWith(basePath + "/")) return src;
+
+    const normalized = src.startsWith("/") ? src : `/${src}`;
+
+    return `${basePath}${normalized}`;
+  };
+
+  const imageSrc = withBasePath(image);
 
   return (
     <div className="flex flex-row flex-wrap items-stretch gap-6 py-8">
-
       <div
         className="
           flex flex-col justify-start
@@ -32,11 +43,7 @@ export default function ContactCard({
           WebkitFontSmoothing: "antialiased",
         }}
       >
-        <h2
-         
-        >
-          Naam: {title}
-        </h2>
+        <h2>Naam: {title}</h2>
 
         <p>Adres: {address}</p>
         <p>Functie: {description}</p>
@@ -44,14 +51,15 @@ export default function ContactCard({
         {phone && <p>Telefoon: {phone}</p>}
 
         {email && (
-         <p>Email: <a href="mailto:${contact.email}">{email}</a></p>
+          <p>
+            Email: <a href="mailto:${contact.email}">{email}</a>
+          </p>
         )}
       </div>
 
-     
       <div className="flex items-center justify-center flex-[1_1_35%] min-w-[150px]">
         <Image
-          src={image}
+          src={imageSrc}
           alt={title}
           fill
           className="
@@ -63,7 +71,6 @@ export default function ContactCard({
           "
         />
       </div>
-
     </div>
   );
 }
