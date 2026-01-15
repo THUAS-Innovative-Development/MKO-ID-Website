@@ -57,7 +57,7 @@ export default function ContactCard({
         )}
       </div>
 
-      <div className="flex items-center justify-center flex-[1_1_35%] min-w-[150px]">
+      <div className="flex items-center justify-center flex-[1_1_35%] min-w-[150px] relative">
         <Image
           src={imageSrc}
           alt={title}
