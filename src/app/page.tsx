@@ -1,11 +1,12 @@
 import "./index.css";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import HeroSection from "@/src/components/HeroSection";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function Home() {
-  const heroBg = `${basePath}/assets/img/dif.jpg`;
+  const heroBg = "/assets/img/dif.jpg";
 
   const mosaicTiles = [
     { image: `${basePath}/assets/img/lighthouse.jpg`, title: "Titel 1" },
@@ -40,29 +41,12 @@ export default function Home() {
 
   return (
     <div className="home-page flex-1 w-full min-w-0">
-      <section
-        className="hero full-width-hero"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="hero-overlay"></div>
-        <div className="hero-content-container">
-          <div
-            className="squangle-box"
-            style={{
-              clipPath: 'polygon(5% 0px, 100% 4%, 96% 95%, 0% 100%)',
-            }}
-          >
-            <div className="squangle-content">
-              <h2 className="hero-subtitle">HBO-ICT Differentiatie</h2>
-              <h1>Innovative Development</h1>
-              <p>
-                Innovatieve oplossingen bedenken en uitvoeren voor bedrijven en organisaties.
-                Flexibel, en out of the box.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        backgroundImage={`${basePath}${heroBg}`}
+        subtitle="HBO-ICT Differentiatie"
+        title="Innovative Development"
+        description="Innovatieve oplossingen bedenken en uitvoeren voor bedrijven en organisaties. Flexibel, en out of the box."
+      />
 
       <div className="container">
         <section className="squangle-mosaic">
