@@ -1,4 +1,5 @@
 import { ContactProps } from '@/src/data/type';
+import Image from 'next/image';
 
 
 export default function ContactCard({
@@ -9,7 +10,7 @@ export default function ContactCard({
   email,
   address,
 }: ContactProps) {
-  const imgSrc = withBasePath(image);
+
   return (
     <div className="flex flex-row flex-wrap items-stretch gap-6 py-8">
 
@@ -49,9 +50,10 @@ export default function ContactCard({
 
      
       <div className="flex items-center justify-center flex-[1_1_35%] min-w-[150px]">
-        <img
+        <Image
           src={image}
           alt={title}
+          fill
           className="
             w-48 h-48
             sm:w-56 sm:h-56
