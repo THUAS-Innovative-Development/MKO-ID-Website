@@ -13,63 +13,50 @@ export default function ContactCard({
     if (src.startsWith("http://") || src.startsWith("https://")) return src;
 
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
     if (basePath && src.startsWith(basePath + "/")) return src;
 
     const normalized = src.startsWith("/") ? src : `/${src}`;
-
     return `${basePath}${normalized}`;
   };
 
   const imageSrc = withBasePath(image);
 
   return (
-    <div className="flex flex-row flex-wrap items-stretch gap-6 py-8">
-      <div
-        className="
-          flex flex-col justify-start
-          gap-4
-          bg-[#e8ebec]
-          text-[#223343]
-          text-base sm:text-lg
-          font-medium
-          leading-relaxed
-          p-6 sm:p-8
-          flex-[1_1_60%]
-          min-w-[200px]
-        "
-        style={{
-          fontFamily: "Aktiv Grotesk, sans-serif",
-          WebkitFontSmoothing: "antialiased",
-        }}
-      >
-        <h2>Naam: {title}</h2>
+    <div className="flex flex-col md:flex-row items-stretch gap-6 py-8">
+      <div className="flex flex-col gap-4 bg-[#e8ebec] p-6 sm:p-8 flex-[1_1_60%]">
+        <h2 className="t-h3 normal-case tracking-normal">{title}</h2>
 
-        <p>Adres: {address}</p>
-        <p>Functie: {description}</p>
-
-        {phone && <p>Telefoon: {phone}</p>}
-
-        {email && (
-          <p>
-            Email: <a href="mailto:${contact.email}">{email}</a>
+        <div className="space-y-2">
+          <p className="t-body-sm">
+            <span className="font-semibold text-[#223343]">Functie:</span>{" "}
+            {description}
           </p>
-        )}
+
+          <p className="t-body-sm">
+            <span className="font-semibold text-[#223343]">Adres:</span>{" "}
+            {address}
+          </p>
+
+          {phone && (
+            <p className="t-body-sm">
+              <span className="font-semibold text-[#223343]">Telefoon:</span>{" "}
+              {phone}
+            </p>
+          )}
+
+          {email && (
+            <p className="t-body-sm">
+              <span className="font-semibold text-[#223343]">Email:</span>{" "}
+              <a className="t-link" href={`mailto:${email}`}>
+                {email}
+              </a>
+            </p>
+          )}
+        </div>
       </div>
 
-      <div className="flex items-center justify-center flex-[1_1_35%] min-w-[150px] relative">
-        <Image
-          src={imageSrc}
-          alt={title}
-          fill
-          className="
-            w-48 h-48
-            sm:w-56 sm:h-56
-            md:w-64 md:h-64
-            object-cover
-            rounded
-          "
-        />
+      <div className="relative flex-[1_1_35%] min-h-[220px] sm:min-h-[260px] md:min-h-[100%] overflow-hidden rounded-sm">
+        <Image src={imageSrc} alt={title} fill className="object-cover" />
       </div>
     </div>
   );

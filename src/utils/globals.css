@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Arial Black';
-  src: url('/assets/fonts/arial_black.woff') format('woff');
+  font-family: "Arial Black";
+  src: url("/assets/fonts/arial_black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -10,6 +10,13 @@
 
 @theme {
   --font-arial-black: "Arial Black", Arial, system-ui, sans-serif;
+
+  --id-primary: #223343;
+  --id-accent: #9ea700;
+
+  --id-bg: #ffffff;
+  --id-muted: #f3f4f6;
+  --id-soft: #f0f0f0;
 }
 
 @layer utilities {
@@ -18,6 +25,87 @@
   }
 
   .clip-fancy {
-    clip-path: polygon(0px 0px, 100% 2.03828%, 97.8889% 97.9617%, 2.11107% 100%);
+    clip-path: polygon(
+      0px 0px,
+      100% 2.03828%,
+      97.8889% 97.9617%,
+      2.11107% 100%
+    );
+  }
+}
+
+@layer components {
+  .t-page {
+    @apply font-sans antialiased text-[#223343];
+  }
+
+  .t-eyebrow {
+    @apply text-xs sm:text-sm font-bold uppercase tracking-widest text-[#9EA700];
+  }
+
+  .t-h1 {
+    @apply font-arial-black uppercase leading-none
+      text-4xl sm:text-5xl lg:text-6xl;
+  }
+
+  .t-h2 {
+    @apply font-arial-black uppercase leading-tight
+      text-2xl sm:text-3xl lg:text-4xl;
+  }
+
+  .t-h3 {
+    @apply font-bold uppercase tracking-wide
+      text-lg sm:text-xl;
+  }
+
+  .t-lead {
+    @apply text-lg sm:text-xl font-medium leading-relaxed text-gray-700;
+  }
+
+  .t-body {
+    @apply text-base sm:text-lg leading-relaxed text-gray-700;
+  }
+
+  .t-body-sm {
+    @apply text-sm sm:text-base leading-relaxed text-gray-600;
+  }
+
+  .t-muted {
+    @apply text-gray-500;
+  }
+
+  .t-link {
+    @apply font-bold inline-flex items-center gap-2
+      text-[#223343] border-b-2 border-[#9EA700]
+      hover:text-[#9EA700] transition-colors pb-1;
+  }
+
+  .t-link-subtle {
+    @apply font-bold inline-flex items-center gap-2
+      text-[#223343] hover:text-[#9EA700] transition-colors;
+  }
+
+  .t-on-dark-lead {
+    @apply text-gray-300 text-lg sm:text-xl leading-relaxed;
+  }
+
+  .t-on-dark-body {
+    @apply text-gray-300 text-base sm:text-lg leading-relaxed;
+  }
+
+  .t-on-dark-muted {
+    @apply text-gray-400;
+  }
+
+    .l-page {
+    @apply w-full flex-1 min-w-0;
+  }
+
+  .l-container {
+    @apply mx-auto w-full max-w-6xl px-0 sm:px-4 md:px-6 lg:px-8;
+  }
+
+  .l-section {
+    @apply py-10 md:py-12;
   }
 }

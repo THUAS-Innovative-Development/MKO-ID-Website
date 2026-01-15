@@ -13,33 +13,30 @@ type ArticleProps = {
   accentColor?: string;
 };
 
-function Link({ link, themeColor }: { link?: string; themeColor: string }) {
+function ReadMore({ link, themeColor }: { link?: string; themeColor: string }) {
+  const content = (
+    <span className="inline-flex items-center gap-2 font-semibold">
+      <span className="text-base">Lees meer</span>
+      <ArrowRight
+        size={18}
+        className="mt-[1px] transition-transform group-hover:translate-x-1"
+      />
+    </span>
+  );
+
   if (link) {
     return (
-      <a
-        href={link}
-        className="flex items-center gap-2 font-semibold mt-auto"
-        style={{ color: themeColor }}
-      >
-        <p className="text-lg">Lees meer</p>
-        <ArrowRight
-          size={20}
-          className="mt-1 transition-transform group-hover:translate-x-1"
-        />
+      <a href={link} className="mt-auto" style={{ color: themeColor }}>
+        {content}
       </a>
     );
-  } else {
-    <div
-      className="flex items-center gap-2 font-semibold mt-auto"
-      style={{ color: themeColor }}
-    >
-      <p className="text-lg">Lees meer</p>
-      <ArrowRight
-        size={20}
-        className="mt-1 transition-transform group-hover:translate-x-1"
-      />
-    </div>;
   }
+
+  return (
+    <div className="mt-auto" style={{ color: themeColor }}>
+      {content}
+    </div>
+  );
 }
 
 export function Article({
@@ -56,33 +53,33 @@ export function Article({
     accentColor || (variant === "project" ? "#9EA700" : "#00b2cd");
 
   return (
-    <article className="group flex flex-col max-w-md w-full gap-4 cursor-pointer h-full relative">
+    <article className="group flex flex-col w-full gap-4 cursor-pointer h-full relative">
       <div className="h-54 w-full overflow-hidden relative">
         <div
           className="
-      h-full w-full
-      [clip-path:polygon(0_0,100%_0,100%_100%,0_100%)]
-      group-hover:[clip-path:polygon(0_0,100%_7.03828%,93.8889%_93.9617%,4.11107%_100%)]
-      transition-[clip-path] duration-500 ease-in-out
-      will-change-[clip-path]
-    "
+            h-full w-full
+            [clip-path:polygon(0_0,100%_0,100%_100%,0_100%)]
+            group-hover:[clip-path:polygon(0_0,100%_7.03828%,93.8889%_93.9617%,4.11107%_100%)]
+            transition-[clip-path] duration-500 ease-in-out
+            will-change-[clip-path]
+          "
         >
           <Image
             src={image}
             alt={title}
-            fill={true}
+            fill
             className="
-        h-full w-full object-cover
-        transition-transform duration-500 ease-in-out
-        group-hover:scale-105
-      "
+              h-full w-full object-cover
+              transition-transform duration-500 ease-in-out
+              group-hover:scale-105
+            "
             loading="lazy"
           />
         </div>
 
         {variant === "project" && date && (
           <div
-            className="absolute top-0 left-0 px-3 py-1 text-xs font-bold text-white shadow-sm z-10"
+            className="absolute top-0 left-0 px-3 py-1 text-xs font-bold text-white shadow-sm z-10 uppercase tracking-wider"
             style={{ backgroundColor: themeColor }}
           >
             {date}
@@ -99,23 +96,23 @@ export function Article({
 
         {variant === "news" && (
           <div
-            className="flex items-center gap-1 mb-1"
+            className="flex items-center gap-2 mb-1"
             style={{ color: themeColor }}
           >
             <Icon size={16} strokeWidth={2} className="mb-0.5" />
-            <h3 className="text-sm font-bold">{date}</h3>
+            <span className="text-xs font-bold uppercase tracking-widest">
+              {date}
+            </span>
           </div>
         )}
 
-        <h1 className="text-lg text-[#223343] font-arial-black leading-tight mb-2">
+        <h3 className="t-h3 normal-case tracking-normal text-[#223343] mb-2">
           {title}
-        </h1>
+        </h3>
 
-        <p className="font-semibold text-[#223343] text-sm leading-relaxed mb-4">
-          {description}
-        </p>
+        <p className="t-body-sm mb-4">{description}</p>
 
-        <Link link={link} themeColor={themeColor} />
+        <ReadMore link={link} themeColor={themeColor} />
       </div>
     </article>
   );
