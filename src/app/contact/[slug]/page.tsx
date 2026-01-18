@@ -1,4 +1,4 @@
-import contactsData from "@/src/data/contacts.json";
+import contactsData from "@/public/pages/contacts.json";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {

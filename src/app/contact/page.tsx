@@ -1,7 +1,7 @@
 import ContactBanner from "@/src/components/Contact/ContactBanner";
 import ContactCard from "@/src/components/Contact/ContactCard";
 import LocationCard from "@/src/components/Contact/LocationCard";
-import contactsData from "@/src/data/contacts.json";
+import contactsData from "@/public/pages/contacts.json";
 
 export default function Contact() {
   const { locations, contacts } = contactsData;
