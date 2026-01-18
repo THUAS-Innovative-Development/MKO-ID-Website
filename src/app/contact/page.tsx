@@ -19,7 +19,7 @@ export default function Contact() {
               key={i}
               title={location.title}
               image={location.image}
-              link={`/contact/${location.slug}`}
+              link="https://www.dehaagsehogeschool.nl/over-de-haagse/contact-bereikbaarheid/locatie-zoetermeer"
             />
           ))}
         </div>

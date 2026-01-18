@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { LocationCardProps } from "@/src/data/type";
 
 export default function LocationCard({
@@ -7,19 +6,26 @@ export default function LocationCard({
   link,
 }: LocationCardProps) {
   return (
-    <Link href={link} className="block group">
-      <div className="overflow-hidden rounded-sm shadow-md aspect-[16/9]">
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block group"
+    >
+      <div className="clip-fancy overflow-hidden shadow-md aspect-[16/9]">
         <img
           src={image}
-          alt={title}
+          alt={`Foto van locatie ${title}`}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
       <p className="mt-4 text-center">
-        <span className="t-h3 normal-case tracking-normal">{title}</span>{" "}
-        <span className="text-[#9EA700] font-bold">→</span>
+        <span className="t-h3 normal-case tracking-normal">
+          {title}
+        </span>{" "}
+        <span className="text-[var(--id-accent)] font-bold">→</span>
       </p>
-    </Link>
+    </a>
   );
 }
